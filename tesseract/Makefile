@@ -1,4 +1,4 @@
-IMAGE_NAME := lpr-deps/leptonica:latest
+IMAGE_NAME := lpr-deps/tesseract:latest
 
 
 build: ## Build a new image and tag it as the latest
@@ -7,7 +7,7 @@ build: ## Build a new image and tag it as the latest
 
 deb: ## Grab the deb file out the container.
 	docker create --name build-container $(IMAGE_NAME)
-	docker cp build-container:/root/leptonica_1.73_armhf.deb ./
+	docker cp build-container:/root/tesseract_3.04.01_armhf.deb ./
 	docker rm build-container
 
 
