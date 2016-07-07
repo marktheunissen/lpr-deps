@@ -1,14 +1,12 @@
-IMAGE_NAME := lpr-deps/tesseract:latest
+IMAGE_NAME := lpr-deps/test:latest
 
 
 build: ## Build a new image and tag it as the latest
 	docker build -t $(IMAGE_NAME) .
 
 
-deb: ## Grab the deb file out the container.
-	docker create --name build-container-tesseract $(IMAGE_NAME)
-	docker cp build-container-tesseract:/root/deb/ ./
-	docker rm build-container-tesseract
+run: ## Run the test plate detection
+	docker run --rm $(IMAGE_NAME)
 
 
 shell: ## Run an interactive shell in a new container and delete it afterwards

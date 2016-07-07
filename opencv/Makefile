@@ -12,7 +12,7 @@ deb: ## Grab the deb file out the container.
 
 
 shell: ## Run an interactive shell in a new container and delete it afterwards
-	docker run -i -t --rm --entrypoint /bin/sh $(IMAGE_NAME)
+	docker run -i -t --rm --entrypoint /bin/bash $(IMAGE_NAME)
 
 
 .PHONY: build deb shell

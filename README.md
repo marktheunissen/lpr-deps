@@ -31,6 +31,14 @@ You'll have to modify each Dockerfile to point to your newly built intermediate 
     make build
     make deb
 
+The `test` directory contains a Dockerfile that pulls in the final debs and allows you to manually verify the install worked. You can build and run it to get the OpenALPR results on the test plate:
+
+    make build
+    make run
+
+## TODO
+
+- Put the debs into a proper repository like Package Cloud or Launchpad PPA (which doesn't support ARM at the moment).
 
 ## Notes
 
