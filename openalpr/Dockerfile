@@ -34,7 +34,7 @@ RUN sed -i '11 i SET(Tesseract_DIR "/usr/local")' /usr/local/src/openalpr/src/CM
     && make install DESTDIR=/tmp/openalpr
 
 WORKDIR /root/deb
-RUN echo "export OPENALPR_VERSION=`cd /usr/local/src/openalpr; git rev-parse --short HEAD`" > ENV_VARS \
+RUN echo "export OPENALPR_VERSION=master-`cd /usr/local/src/openalpr; git rev-parse --short HEAD`" > ENV_VARS \
     && . ./ENV_VARS \
     && rm ENV_VARS \
     && fpm -s dir \
