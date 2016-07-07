@@ -5,9 +5,22 @@ Build OpenALPR and all its dependencies for ARM architecture using Docker.
 
 ## Releases
 
-The .deb files are available on the [releases page](https://github.com/marktheunissen/lpr-deps/releases). Download them and then do:
+If you just want to install OpenALPR on a Raspberry Pi, you can grab the .deb files which are available on the [releases page](https://github.com/marktheunissen/lpr-deps/releases). Download them and then do:
 
-    dpkg -i <file.deb>
+    dpkg -i opencv_<version>_armhf.deb
+    dpkg -i leptonica_<version>_armhf.deb
+    dpkg -i openalpr_<version>_armhf.deb
+    dpkg -i tesseract_<version>_armhf.deb
+    sudo ldconfig
+
+You'll also need to do:
+
+    sudo apt install libcurl4-openssl-dev liblog4cplus-dev
+
+You can then run the test:
+
+    wget -q http://plates.openalpr.com/ea7the.jpg
+    alpr -c us ea7the.jpg
 
 
 ## Building yourself
@@ -36,9 +49,11 @@ The `test` directory contains a Dockerfile that pulls in the final debs and allo
     make build
     make run
 
+
 ## TODO
 
 - Put the debs into a proper repository like Package Cloud or Launchpad PPA (which doesn't support ARM at the moment).
+
 
 ## Notes
 
