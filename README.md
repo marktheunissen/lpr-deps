@@ -23,6 +23,7 @@ Then, build them in order, which is:
 1. leptonica
 2. tesseract
 3. opencv
+4. openalpr
 
 You'll have to modify each Dockerfile to point to your newly built intermediate .deb files.
 

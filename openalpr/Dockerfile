@@ -34,13 +34,16 @@ RUN sed -i '11 i SET(Tesseract_DIR "/usr/local")' /usr/local/src/openalpr/src/CM
     && make install DESTDIR=/tmp/openalpr
 
 WORKDIR /root/deb
-RUN fpm -s dir \
+RUN echo "export OPENALPR_VERSION=`cd /usr/local/src/openalpr; git rev-parse --short HEAD`" > ENV_VARS \
+    && . ./ENV_VARS \
+    && rm ENV_VARS \
+    && fpm -s dir \
     -t deb \
     -m "Mark Theunissen" \
     --url https://github.com/marktheunissen/lpr-deps \
     --description "OpenALPR compiled for ARM" \
     -n openalpr \
-    -v `cd /usr/local/src/openalpr; git rev-parse HEAD; cd -` \
+    -v $OPENALPR_VERSION \
     -C /tmp/openalpr \
     -p /root/deb/openalpr_VERSION_ARCH.deb \
     usr \
