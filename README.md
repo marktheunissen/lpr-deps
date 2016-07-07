@@ -1,4 +1,4 @@
-# OpenALPR Docker Build
+# OpenALPR ARM Docker Build
 
 Build OpenALPR and all its dependencies for ARM architecture using Docker.
 
