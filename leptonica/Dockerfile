@@ -21,6 +21,7 @@ RUN mkdir -p /tmp/leptonica \
     && make -j4 \
     && make install DESTDIR=/tmp/leptonica
 
+WORKDIR /root/deb
 RUN fpm -s dir \
     -t deb \
     -m "Mark Theunissen" \
@@ -29,5 +30,7 @@ RUN fpm -s dir \
     -n leptonica \
     -v 1.73 \
     -C /tmp/leptonica \
-    -p /root/leptonica_VERSION_ARCH.deb \
+    -p /root/deb/leptonica_VERSION_ARCH.deb \
     usr
+
+WORKDIR /root

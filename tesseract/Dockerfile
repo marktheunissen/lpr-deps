@@ -11,8 +11,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/
 
 WORKDIR /usr/local/src
-RUN wget -q https://github.com/marktheunissen/lpr-deps/releases/download/v0.0.1/leptonica_1.73_armhf.deb \
-    && dpkg -i leptonica_1.73_armhf.deb
+RUN gem install fpm \
+    && wget -q https://github.com/marktheunissen/lpr-deps/releases/download/v0.0.2/leptonica_1.73_armhf.deb \
+    && dpkg -i leptonica_1.73_armhf.deb \
+    && rm leptonica_1.73_armhf.deb
 
 RUN wget -q -O tesseract.tar.gz https://github.com/tesseract-ocr/tesseract/archive/3.04.01.tar.gz \
     && wget -q -O tessdata.tar.gz https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz \
@@ -27,6 +29,7 @@ RUN ./autogen.sh \
     && mkdir -p /tmp/tesseract \
     && make install DESTDIR=/tmp/tesseract
 
+WORKDIR /root/deb
 RUN fpm -s dir \
     -t deb \
     -m "Mark Theunissen" \
@@ -35,5 +38,7 @@ RUN fpm -s dir \
     -n tesseract \
     -v 3.04.01 \
     -C /tmp/tesseract \
-    -p /root/tesseract_VERSION_ARCH.deb \
+    -p /root/deb/tesseract_VERSION_ARCH.deb \
     usr
+
+WORKDIR /root

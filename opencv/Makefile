@@ -1,4 +1,4 @@
-IMAGE_NAME := lpr-deps/leptonica:latest
+IMAGE_NAME := lpr-deps/opencv:latest
 
 
 build: ## Build a new image and tag it as the latest
@@ -6,9 +6,9 @@ build: ## Build a new image and tag it as the latest
 
 
 deb: ## Grab the deb file out the container.
-	docker create --name build-container-leptonica $(IMAGE_NAME)
-	docker cp build-container-leptonica:/root/deb/ ./
-	docker rm build-container-leptonica
+	docker create --name build-container-opencv $(IMAGE_NAME)
+	docker cp build-container-opencv:/root/deb/ ./
+	docker rm build-container-opencv
 
 
 shell: ## Run an interactive shell in a new container and delete it afterwards

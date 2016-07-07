@@ -6,9 +6,9 @@ build: ## Build a new image and tag it as the latest
 
 
 deb: ## Grab the deb file out the container.
-	docker create --name build-container $(IMAGE_NAME)
-	docker cp build-container:/root/tesseract_3.04.01_armhf.deb ./
-	docker rm build-container
+	docker create --name build-container-tesseract $(IMAGE_NAME)
+	docker cp build-container-tesseract:/root/deb/ ./
+	docker rm build-container-tesseract
 
 
 shell: ## Run an interactive shell in a new container and delete it afterwards
